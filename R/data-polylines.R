@@ -1,0 +1,18 @@
+#' Polylines of Japanese railway
+#'
+#' Polylines from 'extra/data.json' in \href{https://github.com/Seo-4d696b75/station_database}{Seo-4d696b75/station_database}.
+#' The original data is \href{https://github.com/Seo-4d696b75/station_database/blob/main/out/extra/data.json}{here}.
+#'
+#' @format A simple feature collection with 9 fields:
+#' \describe{
+#' \item{code}{A value that uniquely distinguishes lines in the dataset. Unlike line IDs, it does not guarantee consistency between different versions of the dataset.}
+#' \item{id}{A string that uniquely distinguishes lines in the dataset. Unlike line codes, it ensures consistency between different versions of datasets (the IDs of the same lines be always the same IDs even if in different datasets).}
+#' \item{start}{Location where the polyline starts.}
+#' \item{end}{Location where the polyline ends.}
+#' \item{name}{Name of lines. A suffix may be added to prevent duplications.}
+#' \item{north}{North edge of the polyline (latitude).}
+#' \item{south}{South edge of the polyline (latitude).}
+#' \item{east}{East edge of the polyline (longitude).}
+#' \item{west}{West edge of the polyline (longitude).}
+#' }
+"polylines"

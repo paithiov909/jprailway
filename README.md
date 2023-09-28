@@ -1,0 +1,82 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# jprailway
+
+> Dataset of Japanese Railway
+
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+## Overview
+
+以下のGitHubリポジトリで公開されている、日本の鉄道路線・駅のデータセットを`sf`オブジェクトとして加工したものです。
+
+> [Seo-4d696b75/station_database:
+> スマートフォン位置ゲーム「駅メモ！」で扱う駅データを独自に収集・管理し、二次利用可能な形式で提供します](https://github.com/Seo-4d696b75/station_database)
+
+元のデータセットは[クリエイティブ・コモンズ 表示 4.0 国際
+ライセンス](https://creativecommons.org/licenses/by/4.0/)で頒布されていますが、鉄道路線のポリライン情報については「国土数値情報
+鉄道データ」を典拠とするため、利用にあたって国土交通省の指示するクレジット記載が必要になります。詳しくは[国土数値情報ダウンロードサービス](https://nlftp.mlit.go.jp)の利用規約を確認してください。
+
+## Installation
+
+``` r
+remotes::install_github("paithiov909/jprailway")
+```
+
+## Example
+
+``` r
+# 東海道新幹線が通過する都府県のJISコード
+jis_code <- jpndistrict::jpnprefs |>
+  dplyr::filter(
+    prefecture %in% c("東京都", "神奈川県", "静岡県", "愛知県", "岐阜県", "滋賀県", "京都府", "大阪府")
+  ) |>
+  dplyr::pull(jis_code)
+
+# 通過する都府県のsf (MULTIPOLYGON)
+pref <- jisx0402::jptopography("prefecture") |>
+  dplyr::filter(pref_code %in% jis_code)
+
+# 鉄道区間のsf (LINESTRING)
+tkd_line <- jprailway::polylines |>
+  dplyr::filter(name == "東海道新幹線")
+
+# 駅のsf (POLYGON). ただし、ここでは代表点の座標を使う
+tkd_station <- jprailway::stations |>
+  dplyr::semi_join(
+    jprailway::lines |>
+      dplyr::filter(name == "東海道新幹線") |>
+      tidyr::unnest(station_list, names_sep = "_"),
+    by = c("code" = "station_list_code")
+  )
+
+
+# プロット
+require(ggplot2)
+#>  要求されたパッケージ ggplot2 をロード中です
+
+pref |>
+  ggplot() +
+  geom_sf() +
+  geom_sf(data = tkd_line) +
+  geom_point(aes(x = lng, y = lat), data = tkd_station) +
+  ggrepel::geom_label_repel(aes(x = lng, y = lat, label = name), data = tkd_station) +
+  coord_sf(xlim = c(135, 140), ylim = c(34.5, 35.8)) +
+  labs(
+    title = "東海道新幹線の停車駅",
+    caption = paste(
+      "出典：国土数値情報（行政区域データ、鉄道データ）（国土交通省）",
+      "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_0.html",
+      "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-v2_3.html",
+      sep = "\n"
+    )
+  ) +
+  theme_light()
+```
+
+<img src="man/figures/README-example-1.png" width="100%" />

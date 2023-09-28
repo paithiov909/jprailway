@@ -1,0 +1,21 @@
+Package: jprailway
+Title: Dataset of Japanese Railway
+Version: 2023.07.31
+Authors@R: 
+    person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre"))
+Description: Provides an extended dataset of Japanese railway revised
+    from <https://github.com/Seo-4d696b75/station_database>. The original
+    dataset is sourced from <https://www.ekidata.jp/>, the digital
+    national land information download site, or other resources, and
+    licensed under 'CC-BY 4.0'
+    <https://creativecommons.org/licenses/by/4.0/>.
+License: CC BY 4.0
+BugReports: https://github.com/paithiov909/jprailway/issues
+Depends: 
+    R (>= 2.10),
+    sf
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: bzip2
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
