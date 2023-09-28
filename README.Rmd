@@ -41,11 +41,11 @@ remotes::install_github("paithiov909/jprailway")
 
 ```{r example}
 # 東海道新幹線が通過する都府県のJISコード
-jis_code <- jpndistrict::jpnprefs |>
+jis_code <- jisx0402::jpprefs |>
   dplyr::filter(
-    prefecture %in% c("東京都", "神奈川県", "静岡県", "愛知県", "岐阜県", "滋賀県", "京都府", "大阪府")
+    name %in% c("東京都", "神奈川県", "静岡県", "愛知県", "岐阜県", "滋賀県", "京都府", "大阪府")
   ) |>
-  dplyr::pull(jis_code)
+  dplyr::pull(pref_code)
 
 # 通過する都府県のsf (MULTIPOLYGON)
 pref <- jisx0402::jptopography("prefecture") |>
