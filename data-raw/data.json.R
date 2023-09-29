@@ -1,6 +1,6 @@
-# v20230731 ----
+# v20230929 ----
 download.file(
-  "https://github.com/Seo-4d696b75/station_database/raw/v20230731/out/extra/data.json",
+  "https://github.com/Seo-4d696b75/station_database/raw/v20230929/out/extra/data.json",
   (data_json <- tempfile(fileext = ".json"))
 )
 dt <- jsonlite::read_json(data_json, simplifyVector = TRUE)
