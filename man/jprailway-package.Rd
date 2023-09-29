@@ -6,7 +6,7 @@
 \alias{jprailway-package}
 \title{jprailway: Dataset of Japanese Railway}
 \description{
-Provides an extended dataset of Japanese railway revised from \url{https://github.com/Seo-4d696b75/station_database}. The original dataset is sourced from \url{https://www.ekidata.jp/}, the digital national land information download site, or other resources, and licensed under 'CC-BY 4.0' \url{https://creativecommons.org/licenses/by/4.0/}.
+Provides an extended dataset of Japanese railway revised from \url{https://github.com/Seo-4d696b75/station_database}. The original dataset is sourced from \url{https://www.ekidata.jp/}, the digital national land information download site, or other resources, and licensed under 'CC BY 4.0' \url{https://creativecommons.org/licenses/by/4.0/}.
 }
 \seealso{
 Useful links:

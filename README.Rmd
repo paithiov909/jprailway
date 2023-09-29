@@ -19,6 +19,7 @@ pkgload::load_all()
 > Dataset of Japanese Railway
 
 <!-- badges: start -->
+[![jprailway status badge](https://paithiov909.r-universe.dev/badges/jprailway)](https://paithiov909.r-universe.dev/jprailway)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
@@ -28,7 +29,7 @@ pkgload::load_all()
 
 > [Seo-4d696b75/station_database: スマートフォン位置ゲーム「駅メモ！」で扱う駅データを独自に収集・管理し、二次利用可能な形式で提供します](https://github.com/Seo-4d696b75/station_database)
 
-元のデータセットは[クリエイティブ・コモンズ 表示 4.0 国際 ライセンス](https://creativecommons.org/licenses/by/4.0/)で頒布されていますが、鉄道路線のポリライン情報については「国土数値情報 鉄道データ」を典拠とするため、利用にあたって国土交通省の指示するクレジット記載が必要になります。詳しくは[国土数値情報ダウンロードサービス](https://nlftp.mlit.go.jp)の利用規約を確認してください。
+元のデータセットは[クリエイティブ・コモンズ 表示 4.0 国際 ライセンス](https://creativecommons.org/licenses/by/4.0/)で頒布されていますが、鉄道路線のポリライン情報については「国土数値情報 鉄道データ」を典拠とするため、利用にあたって国土交通省の指示するクレジット記載が必要になります。詳しくは[国土数値情報ダウンロードサイト](https://nlftp.mlit.go.jp)の利用規約を確認してください。
 
 
 ## Installation

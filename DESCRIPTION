@@ -7,7 +7,7 @@ Description: Provides an extended dataset of Japanese railway revised
     from <https://github.com/Seo-4d696b75/station_database>. The original
     dataset is sourced from <https://www.ekidata.jp/>, the digital
     national land information download site, or other resources, and
-    licensed under 'CC-BY 4.0'
+    licensed under 'CC BY 4.0'
     <https://creativecommons.org/licenses/by/4.0/>.
 License: CC BY 4.0
 BugReports: https://github.com/paithiov909/jprailway/issues

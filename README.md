@@ -7,6 +7,8 @@
 
 <!-- badges: start -->
 
+[![jprailway status
+badge](https://paithiov909.r-universe.dev/badges/jprailway)](https://paithiov909.r-universe.dev/jprailway)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
@@ -20,7 +22,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 元のデータセットは[クリエイティブ・コモンズ 表示 4.0 国際
 ライセンス](https://creativecommons.org/licenses/by/4.0/)で頒布されていますが、鉄道路線のポリライン情報については「国土数値情報
-鉄道データ」を典拠とするため、利用にあたって国土交通省の指示するクレジット記載が必要になります。詳しくは[国土数値情報ダウンロードサービス](https://nlftp.mlit.go.jp)の利用規約を確認してください。
+鉄道データ」を典拠とするため、利用にあたって国土交通省の指示するクレジット記載が必要になります。詳しくは[国土数値情報ダウンロードサイト](https://nlftp.mlit.go.jp)の利用規約を確認してください。
 
 ## Installation
 
