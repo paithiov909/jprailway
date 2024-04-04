@@ -22,7 +22,7 @@ A simple feature collection with 9 fields:
 polylines
 }
 \description{
-Polylines from 'extra/data.json' in \href{https://github.com/Seo-4d696b75/station_database}{Seo-4d696b75/station_database}.
-The original data is \href{https://github.com/Seo-4d696b75/station_database/blob/main/out/extra/data.json}{here}.
+Polylines from 'extra/json.zip' in \href{https://github.com/Seo-4d696b75/station_database}{Seo-4d696b75/station_database}.
+The original data is \href{https://github.com/Seo-4d696b75/station_database/blob/main/out/extra/json.zip}{here}.
 }
 \keyword{datasets}

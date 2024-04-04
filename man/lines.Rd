@@ -19,14 +19,14 @@ A tibble with 13 variables:
 \item{symbol}{The symbol string of the line.}
 \item{closed}{Whether the line was closed or not?}
 \item{closed_date}{Date when the line was closed.}
-\item{impl}{Whether or not the line is implemented in the 'Ekimemo!' game app?}
+\item{extra}{Whether or not the line is implemented in the 'Ekimemo!' game app?}
 }
 }
 \usage{
 lines
 }
 \description{
-A list of railway lines from 'extra/data.json' in \href{https://github.com/Seo-4d696b75/station_database}{Seo-4d696b75/station_database}.
-The original data is \href{https://github.com/Seo-4d696b75/station_database/blob/main/out/extra/data.json}{here}.
+A list of railway lines from 'extra/json.zip' in \href{https://github.com/Seo-4d696b75/station_database}{Seo-4d696b75/station_database}.
+The original data is \href{https://github.com/Seo-4d696b75/station_database/blob/main/out/extra/json.zip}{here}.
 }
 \keyword{datasets}

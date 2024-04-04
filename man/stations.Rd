@@ -20,7 +20,7 @@ A simple feature collection with 17 fields:
 \item{address}{Address of the station's location.}
 \item{open_date}{Date when the station was opened.}
 \item{closed_date}{Date when the station was closed.}
-\item{impl}{Whether or not the station is implemented in the 'Ekimemo!' game app?}
+\item{extra}{Whether or not the station is implemented in the 'Ekimemo!' game app?}
 \item{attr}{Station attribute in the 'Ekimemo!' game app.}
 \item{lines}{List of line codes passing through the station.}
 \item{delaunay}{List of the neighboring points (station codes) obtained by Delaunay partitioning.}
@@ -30,7 +30,7 @@ A simple feature collection with 17 fields:
 stations
 }
 \description{
-A list of railway stations from 'extra/data.json' in \href{https://github.com/Seo-4d696b75/station_database}{Seo-4d696b75/station_database}.
-The original data is \href{https://github.com/Seo-4d696b75/station_database/blob/main/out/extra/data.json}{here}.
+A list of railway stations from 'extra/json.zip' in \href{https://github.com/Seo-4d696b75/station_database}{Seo-4d696b75/station_database}.
+The original data is \href{https://github.com/Seo-4d696b75/station_database/blob/main/out/extra/json.zip}{here}.
 }
 \keyword{datasets}

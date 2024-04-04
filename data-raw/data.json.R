@@ -1,19 +1,33 @@
-# v20240229 ----
+# v20240329 ----
 download.file(
-  "https://github.com/Seo-4d696b75/station_database/raw/v20240229/out/extra/data.json",
-  (data_json <- tempfile(fileext = ".json"))
+  "https://github.com/Seo-4d696b75/station_database/raw/v20240329/out/extra/json.zip",
+  (data_zip <- tempfile(fileext = ".zip"))
 )
-dt <- jsonlite::read_json(data_json, simplifyVector = TRUE)
+unzip(data_zip, exdir = here::here("data-raw"))
 
 ## stations ----
-stations <- dplyr::as_tibble(dt$stations) |>
-  dplyr::rename(delaunay = "next")
+stations <-
+  jsonlite::read_json(
+    "data-raw/json/station.json",
+    simplifyVector = TRUE
+  ) |>
+  dplyr::as_tibble()
+
+delaunay <-
+  jsonlite::read_json(
+    "data-raw/json/delaunay.json",
+    simplifyVector = TRUE
+  ) |>
+  dplyr::as_tibble() |>
+  dplyr::rename(delaunay = "next") |>
+  dplyr::select(code, delaunay)
 
 voronoi <- stations |>
   dplyr::pull(voronoi) |>
   dplyr::as_tibble()
 props <- stations |>
-  dplyr::select(!"voronoi")
+  dplyr::select(!"voronoi") |>
+  dplyr::left_join(delaunay, by = "code")
 
 list(
   type = "FeatureCollection",
@@ -34,48 +48,70 @@ stations <- sf::read_sf(tmp) |>
     "code", "id", "name", "original_name", "name_kana", "closed",
     "lat", "lng",
     "prefecture", "postal_code", "address",
-    "open_date", "closed_date", "impl", "attr"
+    "open_date", "closed_date", "extra", "attr"
   )
 
 usethis::use_data(stations, overwrite = TRUE)
 
 
 ## lines ----
-lines <- dt$lines |>
+lines <-
+  jsonlite::read_json(
+    "data-raw/json/line.json",
+    simplifyVector = TRUE
+  ) |>
   dplyr::as_tibble() |>
-  dplyr::select(!"polyline_list") |>
-  dplyr::mutate(station_list = purrr::map(station_list, ~ dplyr::as_tibble(.))) |>
+  dplyr::mutate(station_list = purrr::map(code, ~ {
+    lst <- jsonlite::read_json(
+      file.path("data-raw/json/line", paste0(.x, ".json")),
+      simplifyVector = TRUE
+    )
+    lst$station_list |>
+      dplyr::as_tibble() |>
+      dplyr::select(code, name)
+  })) |>
   dplyr::relocate(
     "code", "id", "name", "name_kana", "name_formal",
     "station_size", "station_list",
-    "company_code", "color", "symbol", "closed", "closed_date", "impl"
+    "company_code", "color", "symbol", "closed", "closed_date", "extra"
   )
 
 usethis::use_data(lines, overwrite = TRUE)
 
 
 ## polylines ----
-polylines <- dt$lines |>
-  dplyr::select(code, id, polyline_list) |>
-  tidyr::unnest(polyline_list) |>
-  dplyr::as_tibble() |>
-  tidyr::unnest(properties) |>
-  dplyr::select(!"type") |>
-  tidyr::unnest(features) |>
-  tidyr::unnest(properties) |>
-  dplyr::select(!"closed")
+polylines <- lines |>
+  ## https://github.com/Seo-4d696b75/station_database/issues/54
+  dplyr::filter(!name %in% c("嘉手納線", "鉄道院中央本線")) |>
+  dplyr::select(code, id, name) |>
+  dplyr::mutate(polyline = purrr::map(code, ~ {
+    json <-
+      jsonlite::read_json(
+        file.path("data-raw/json/polyline", paste0(.x, ".json")),
+        simplifyVector = TRUE
+      )
+    as.data.frame(json$properties) |>
+      dplyr::select(!"name")
+  })) |>
+  tidyr::unnest(polyline)
 
-list(
-  type = "FeatureCollection",
-  features = dplyr::select(polylines, type, geometry) |>
-    dplyr::mutate(properties = dplyr::select(polylines, !c("type", "geometry")))
-) |>
-  jsonlite::write_json(
-    path = (tmp <- tempfile(fileext = ".json")),
-    auto_unbox = TRUE,
-    digits = NA
-  )
-
-polylines <- sf::read_sf(tmp)
+polylines <-
+  dplyr::group_by(polylines, code) |>
+  dplyr::group_map(~
+    sf::read_sf(
+      file.path("data-raw/json/polyline", paste0(.y$code, ".json"))
+    ) |>
+      dplyr::mutate(code = .y$code)
+  ) |>
+  purrr::list_rbind() |>
+  dplyr::left_join(polylines, by = "code") |>
+  dplyr::select(
+    "code", "id",
+    "start", "end",
+    "name",
+    "north", "south", "east", "west",
+    "geometry"
+  ) |>
+  sf::st_sf()
 
 usethis::use_data(polylines, overwrite = TRUE)
