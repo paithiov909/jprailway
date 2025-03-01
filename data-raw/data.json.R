@@ -1,6 +1,6 @@
-# v20241129 ----
+# v20250228 ----
 download.file(
-  "https://github.com/Seo-4d696b75/station_database/raw/v20241129/out/extra/json.zip",
+  "https://github.com/Seo-4d696b75/station_database/raw/v20250228/out/extra/json.zip",
   (data_zip <- tempfile(fileext = ".zip"))
 )
 unzip(data_zip, exdir = here::here("data-raw"))
