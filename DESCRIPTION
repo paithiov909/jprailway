@@ -3,8 +3,8 @@ Title: Dataset of Japanese Railway
 Version: 2025.02.28
 Authors@R:
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre"))
-Description: Provides an extended dataset of Japanese railway revised
-    from <https://github.com/Seo-4d696b75/station_database>. The original
+Description: Provides an extended dataset of Japanese railway revised from
+    <https://github.com/Seo-4d696b75/station_database>. The original
     dataset is sourced from <https://www.ekidata.jp/>, the digital
     national land information download site, or other resources, and
     licensed under 'CC BY 4.0'
@@ -12,8 +12,10 @@ Description: Provides an extended dataset of Japanese railway revised
 License: CC BY 4.0
 BugReports: https://github.com/paithiov909/jprailway/issues
 Depends:
-    R (>= 3.5),
-    sf
+    R (>= 3.5)
+Imports:
+    sf,
+    tibble
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: bzip2
