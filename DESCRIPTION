@@ -1,6 +1,6 @@
 Package: jprailway
 Title: Dataset of Japanese Railway
-Version: 2025.10.13
+Version: 2025.12.21
 Authors@R:
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre"))
 Description: Provides an extended dataset of Japanese railway revised from
